@@ -1,0 +1,38 @@
+# ESTOS SON TODOS LOS COMANDO SQL QUE USE , LOS ULTIMOS SON DE PRUEBA
+create Database TareaADD;
+
+create table PEDIDO(
+IdPedido int primary key identity,
+Fecha datetime,
+NombreCliente varchar(50),
+MontoPedido int,
+Distrito varchar(50)
+)
+
+go
+
+create proc SP_RegistrarPedido(
+    @Fecha DATETIME,
+    @NombreCliente VARCHAR(50),
+    @MontoPedido INT,
+    @Distrito VARCHAR(50),
+	@Resultado int output,
+	@Mensaje varchar(500) output
+)
+as
+begin
+SET @Resultado = 0
+	DECLARE @IDPERSONA INT 
+	INSERT INTO PEDIDO (Fecha, NombreCliente, MontoPedido, Distrito)
+    VALUES (@Fecha, @NombreCliente, @MontoPedido, @Distrito);
+	end
+
+go 
+
+select * from PEDIDO
+delete from PEDIDO
+DBCC CHECKIDENT('PEDIDO', RESEED, 0);
+
+
+INSERT INTO PEDIDO (Fecha, NombreCliente, MontoPedido, Distrito)
+    VALUES (10/10/2023, 'Ale', 90, 'Villa loca');
